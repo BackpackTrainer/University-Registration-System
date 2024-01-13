@@ -8,7 +8,8 @@ CREATE TABLE STUDENT (
      student_year VARCHAR(255),
      CHECK (student_year IN ('Freshman', 'Sophomore', 'Junior', 'Senior')),
 --      Note:  H2 databases do not handle enums.  When we switch to the MySql database we will be able to use enums
---      year ENUM('Freshman', 'Sophomore', 'Junior', 'Senior'),
+--      We can replace the two lines above with this line:
+--      student_year ENUM('Freshman', 'Sophomore', 'Junior', 'Senior'),
      last_registration_date DATE
 );
 
@@ -46,7 +47,11 @@ CREATE TABLE REGISTRATION (
       registration_id INT AUTO_INCREMENT PRIMARY KEY,
       student_id INT,
       offering_id INT,
-      registration_date DATE
+      registration_date DATE,
+      grade VARCHAR(1),
+      CHECK (grade IN ('A', 'B', 'C', 'D', 'F','I', 'W')),
+      class_rating INT,
+      CHECK (class_rating <=5)
 
 );
 
